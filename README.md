@@ -6,22 +6,26 @@ This project implements a **vega-neutral reverse dispersion trading strategy** u
 
 ## 📉 Why Reverse Dispersion?
 
-After observing a significant divergence between **implied** and **realized correlation** starting mid-2025, we pivoted from traditional dispersion to **reverse dispersion**.
+After observing a significant divergence between **implied** and **realized correlation** starting mid-April 2025, we pivoted from traditional dispersion to **reverse dispersion**.
 
 The chart below shows SPX 3M Implied Correlation (white) vs. SPX 3M Realized Correlation (blue):
 
 ![Bloomberg Correlation](./bloomberg_correlation.png)
 
-> **Observation**: Realized correlation remained elevated while implied correlation collapsed around **June 23, 2025**, creating a large gap and an attractive setup for reverse dispersion.
+> **Observation**: Around June 23, 2025, realized correlation dropped, but remained **above** implied correlation. Combined with low volatility in individual stocks and sustained index movement, this created a favorable setup for reverse dispersion — where short single-name straddles benefited from decay, and the long index straddle captured broader market moves.
 
 ---
 
 ## 🧠 Strategy Summary
 
-In reverse dispersion, we **short single-name option straddles** and **long the index straddle**, aiming to profit when realized correlation falls and implied correlation rises.
+In **reverse dispersion**, we **short single-name option straddles** and **long the index straddle**, aiming to profit when **realized correlation stays higher than implied correlation**.
 
-Key properties:
-- **Vega-neutral**: Net vega exposure is dynamically neutralized using SPY straddles.
+The strategy works best when stocks move **together** (high realized correlation), but not by much individually. In this case, the single-name options lose value from **theta decay** and **implied volatility bleed**, while the index straddle benefits from capturing the broader market’s movement.
+
+Even if realized correlation starts to fall, reverse dispersion can still perform well **as long as it's higher than implied correlation**, which creates the pricing mismatch the trade is based on.
+
+Key properties of our reverse dispersion trading algorithm:
+- **Vega-neutral**: Net vega exposure is dynamically neutralized using SPY straddles to focus on the alpha generated from correlation mispricing, not volatility exposure.
 - **Rolling Adjustments**: Positions are rebalanced daily based on new greeks and prices.
 - **Expiry-Aware**: Hedging stops within 3 days of expiry to prevent tail-end risk.
 
@@ -33,7 +37,6 @@ Key properties:
 - ✅ Expiry-aware Hedge Suppression
 - ✅ Daily Net Vega Monitoring
 - ✅ PnL Logging by Leg (Index vs. Stocks)
-- ✅ Percentage and Dollar-based PnL Plots
 - ✅ Data From Polygon API and Bloomberg Terminal
 
 ---
@@ -61,13 +64,13 @@ Key properties:
 ## 🛠️ Setup
 
 Installation and dependencies:
-<pre> <code>git clone https://github.com/jeffery05/dispersion-strategy.git
+<pre><code>git clone https://github.com/jeffery05/dispersion-strategy.git
 pip install -r requirements.txt</code> </pre>
 
 Create a .env file with your Polygon.io API keys:
 
-<pre> <code>STOCK_API_KEY=your_stock_key_here
-OPTIONS_API_KEY=your_options_key_here</code> </pre>
+<pre><code>STOCK_API_KEY=your_polygon_stocks_api_key_here
+OPTIONS_API_KEY=your_polygon_options_api_key_here</code></pre>
 
 Run the notebook: dispersion.ipynb
 
