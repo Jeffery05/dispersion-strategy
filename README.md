@@ -1,6 +1,6 @@
 # Dispersion Strategy Backtest
 
-This repository implements a **vega-neutral reverse dispersion trading strategy** using historical options and correlation data.
+This project implements a **vega-neutral reverse dispersion trading strategy** using historical options and correlation data.
 
 ---
 
@@ -12,13 +12,13 @@ The chart below shows SPX 3M Implied Correlation (white) vs. SPX 3M Realized Cor
 
 ![Bloomberg Correlation](./bloomberg_correlation.png)
 
-> **Observation**: Implied correlation remained elevated while realized correlation collapsed around **June 23, 2025**, creating an attractive setup for reverse dispersion.
+> **Observation**: Realized correlation remained elevated while implied correlation collapsed around **June 23, 2025**, creating a large gap and an attractive setup for reverse dispersion.
 
 ---
 
 ## 🧠 Strategy Summary
 
-In reverse dispersion, we **short single-name options** (straddles) and **long the index straddle**, aiming to profit when constituent stocks move **more in sync** than expected.
+In reverse dispersion, we **short single-name option straddles** and **long the index straddle**, aiming to profit when realized correlation falls and implied correlation rises.
 
 Key properties:
 - **Vega-neutral**: Net vega exposure is dynamically neutralized using SPY straddles.
