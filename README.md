@@ -86,4 +86,4 @@ Daily percentage PnL for the long leg, short leg, and total portfolio is visuali
 
 
 ## 🧠 Credits
-Built by Jeffery Hu & the UW FARMSA Quantitative Research Team for academic and research purposes. Inspired by real-world institutional volatility strategies.
+Built by the UW FARMSA Quantitative Research Team (Summer 2025) for academic and research purposes. Inspired by real-world institutional volatility strategies.
