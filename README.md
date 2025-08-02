@@ -77,7 +77,7 @@ Run the notebook: dispersion.ipynb
 ---
 
 ## 📈 Results
-This reverse dispersion strategy achieved a total return of **+10.4%** over the one-month backtest period (June 27, 2025 – July 25, 2025).
+This reverse dispersion strategy achieved a total return of **+10.4%** over the one-month backtest period (June 23, 2025 – July 25, 2025).
 It used a dynamic vega-neutral hedging mechanism with a maximum vega imbalance threshold of ±10% before re-hedging.
 
 Daily percentage PnL for the long leg, short leg, and total portfolio is visualized below:
