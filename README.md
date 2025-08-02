@@ -52,12 +52,7 @@ Key properties of our reverse dispersion trading algorithm:
 
 ## 📊 Example Output
 
-🗓️ Date: 2025-07-25
-💰 PnL (Total): -$9.53 (-3.41%)
-⚖️ Net Vega: -0.1620, SPY Straddle Vega: 0.8020
-🔄 Rebalancing: Buying 0.20x SPY straddle to flatten vega.
-  LONG  SPY Straddle         | PnL: $3.12
-  SHORT AAPL Straddle        | PnL: $-2.54
+![Sample Result](./sample_output.png)
 
 ---
 
