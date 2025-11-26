@@ -7,22 +7,20 @@ import plotly.express as px
 
 @st.cache_data
 def load_data():
-    pnl = pd.read_csv("pnl_log.csv")
     pos = pd.read_csv("positions_log.csv")
 
-    pnl["date"] = pd.to_datetime(pnl["date"])
     pos["date"] = pd.to_datetime(pos["date"])
 
     # Market value (unsigned notional)
     pos["mv"] = pos["price_today"] * pos["quantity"]
 
-    return pnl.sort_values("date"), pos.sort_values(["date", "ticker"])
+    return pos.sort_values(["date", "ticker"])
 
 
-pnl, pos = load_data()
+pos = load_data()
 
 # unique dates (date only, no time)
-all_dates = pnl["date"].dt.date.unique()
+all_dates = pos["date"].dt.date.unique()
 min_date = all_dates[0]
 max_date = all_dates[-1]
 
@@ -51,15 +49,8 @@ with hdr_left:
     )
 
 # Filter PnL & positions by date range (for views)
-mask_pnl = (pnl["date"].dt.date >= date_range[0]) & (pnl["date"].dt.date <= date_range[1])
-pnl_view = pnl.loc[mask_pnl].copy()
-
 mask_pos_view = (pos["date"].dt.date >= date_range[0]) & (pos["date"].dt.date <= date_range[1])
 pos_view = pos.loc[mask_pos_view].copy()
-
-if pnl_view.empty or pos_view.empty:
-    st.error("No data in the selected date range.")
-    st.stop()
 
 # ---------- TRUE MTM PnL FROM positions_log (TOTAL / LONG / SHORT) ----------
 
