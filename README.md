@@ -1,6 +1,8 @@
 # Dispersion Strategy Backtest
 
-This project implements a **delta- and vega-neutral reverse dispersion trading strategy** using historical options and correlation data. Website Link: https://dispersion-algorithm.streamlit.app/
+This project implements a **delta- and vega-neutral reverse dispersion trading strategy** using historical options and correlation data. 
+
+**Website Link**: https://dispersion-algorithm.streamlit.app/
 
 ---
 
