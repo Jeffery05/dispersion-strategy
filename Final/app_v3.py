@@ -2,12 +2,15 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 import plotly.express as px
+from pathlib import Path
+
 
 # ---------- LOAD & PREP DATA ----------
 
 @st.cache_data
 def load_data():
-    pos = pd.read_csv("positions_log.csv")
+    base_dir = Path(__file__).parent  # Final/
+    pos = pd.read_csv(base_dir / "positions_log.csv")
 
     pos["date"] = pd.to_datetime(pos["date"])
 
