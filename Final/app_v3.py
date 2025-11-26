@@ -52,6 +52,7 @@ with hdr_left:
 mask_pos_view = (pos["date"].dt.date >= date_range[0]) & (pos["date"].dt.date <= date_range[1])
 pos_view = pos.loc[mask_pos_view].copy()
 
+
 # ---------- TRUE MTM PnL FROM positions_log (TOTAL / LONG / SHORT) ----------
 
 pos_all = pos.copy()
@@ -218,7 +219,7 @@ col3.metric(
 )
 col4.metric(
     "Backtest Period",
-    f"{pnl_view['date'].min().date()} → {pnl_view['date'].max().date()}"
+    f"{pos_view['date'].min().date()} → {pos_view['date'].max().date()}"
 )
 
 # ---------- DAILY MTM PNL IN % (TOP CHART, TOTAL / LONG / SHORT) ----------
@@ -487,9 +488,6 @@ else:
         use_container_width=True,
         hide_index=True,
     )
-
-    st.markdown("---")
-
 
 # ---------- NET DELTA / VEGA OVER TIME (WITH HEDGE MARKERS) ----------
 
