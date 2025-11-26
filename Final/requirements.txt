@@ -1,0 +1,7 @@
+streamlit
+pandas
+numpy
+plotly
+matplotlib
+scipy
+openpyxl        # if you read/write Excel
