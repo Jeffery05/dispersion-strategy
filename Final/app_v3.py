@@ -447,13 +447,30 @@ else:
         "value_change",
     ]
 
-    styled = merged_display.style.applymap(color_change, subset=change_cols)
+    # Columns that should show + / – signs:
+fmt_cols = change_cols  # DO NOT include net_qty_tdy
 
-    st.dataframe(
-        styled,
-        use_container_width=True,
-        hide_index=True,
-    )
+def plus_format(x):
+    try:
+        if pd.isna(x):
+            return ""
+        return f"{x:+.2f}"   # +5.00, -3.00, etc.
+    except TypeError:
+        return x
+
+styled = (
+    merged_display
+    .style
+    .applymap(color_change, subset=change_cols)  # your color logic stays the same
+    .format(plus_format, subset=fmt_cols)        # add "+" only to change columns
+)
+
+st.dataframe(
+    styled,
+    use_container_width=True,
+    hide_index=True,
+)
+
 
 st.markdown("---")
 
