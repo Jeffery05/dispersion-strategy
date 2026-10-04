@@ -461,7 +461,7 @@ def plus_format(x):
 styled = (
     merged_display
     .style
-    .applymap(color_change, subset=change_cols)  # your color logic stays the same
+    .map(color_change, subset=change_cols)  # your color logic stays the same
     .format(plus_format, subset=fmt_cols)        # add "+" only to change columns
 )
 
